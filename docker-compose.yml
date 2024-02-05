@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  express:
+    image: express:postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ./server.js:/app/server.js
+      - ./views:/app/views
+    container_name: express
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "8080:5432"
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    container_name: postgres
+    restart: always
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:

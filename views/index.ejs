@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Another docker project</title>
+</head>
+<body>
+    <h1>Express and postgres!</h1>
+    <p>Here are a list of users:</p>
+    <ul>
+        <% users.forEach(function(user) { %>
+          <li>ID: <%= user.id %>, Username: <%= user.username %></li>
+        <% }); %>
+    </ul>
+</body>
+</html>
